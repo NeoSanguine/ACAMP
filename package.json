@@ -1,12 +1,12 @@
 {
-  "name": "ACAMP",
+  "name": "AC_AMP",
   "version": "0.0.1",
-  "description": "App that emmulates the music system in the animal crossing games.",
+  "description": "Animal Crossing Automated Music Player, seeks to emulate the hourly music feature from the Animal Crossing games.",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/NeoSanguine/AnimalCrossing_AMP.git",
+  "repository": "https://github.com/NeoSanguine/AC_AMP",
   "keywords": [
     "Electron",
     "Animal Crossing",
