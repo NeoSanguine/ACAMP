@@ -12,24 +12,24 @@ You will need to create a "music" folder in the bin. and the structure will look
 
 Folder Structure:
 
-  bin/music/wild_world/
+      bin/music/wild_world/
   
-  bin/music/new_leaf/
+      bin/music/new_leaf/
   
-  bin/music/new_horizons/
+      bin/music/new_horizons/
   
   
 File Structure for their respective folders:
 
-  12AM.mp3
+     12AM.mp3
+    
+     1AM .mp3
   
-  1AM .mp3
+     ...
   
-  ...
+     ...
   
-  ...
-  
-  etc.
+     etc.
   
   
   ![Menu](https://i.imgur.com/EO4FzaC.png)
