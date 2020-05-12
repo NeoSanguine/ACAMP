@@ -1,4 +1,6 @@
 node_modules
 bin/music/
-bin/background/
-bin/font/
+bin/background/ac_background.png
+bin/background/ac_background2.png
+bin/background/images.png
+bin/background/sunset2.png
