@@ -34,6 +34,9 @@ function createWindow () {
   // and load the index.html of the app.
   mainWindow.loadFile('index.html');
   mainWindow.setMenuBarVisibility(debug);
+
+  //create the icon
+  mainWindow.setIcon("./bin/icon/icon.png");
   
 
 
