@@ -181,7 +181,7 @@ function getTime(){
     }
 
     
-    if(current_hour > 10){
+    if(current_hour > 12){
         stringHour = current_hour - 12;
     }
     else{
@@ -189,9 +189,17 @@ function getTime(){
     }
     
     // put the 0 in front if the time is a single digit
-    if(current_hour - 12 < 10 ){
-        stringHour = "0" + stringHour;
+    if(isAM == true){
+        if(current_hour < 10){
+            stringHour = "0" + stringHour;
+        }
     }
+    else if(isAm == false){
+        if(current_hour < 22 && current_hour != 12){ // 10PM
+            stringHour = "0" + stringHour;
+        }
+    }
+    
 
     // put the 0 in front if the time is a single digit
     stringMinute = current_minute;
