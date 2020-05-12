@@ -1,0 +1,21 @@
+{
+  "name": "ACAMP",
+  "version": "0.0.1",
+  "description": "App that emmulates the music system in the animal crossing games.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/NeoSanguine/AnimalCrossing_AMP.git",
+  "keywords": [
+    "Electron",
+    "Animal Crossing",
+    "Music",
+    "Games"
+  ],
+  "author": "NeoSanguine",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^8.2.5"
+  }
+}

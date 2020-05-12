@@ -1,0 +1,76 @@
+#button{
+    font-size:48px;
+    font-family: "Animal Crossing";
+    text-align:center;
+    color:#ffff00;
+
+}
+
+.tooltip {
+    color:#ffff00;
+    /*visibility: hidden;*/
+    position: relative;
+    display: inline;
+
+    z-index: 1;
+}
+
+.tooltip:hover {
+   /* visibility: visible;*/
+   color:#ffffff;
+}
+
+#wild_world_button {
+    text-decoration: none;
+    color:#ffff00;
+}
+
+#wild_world_button:hover {
+    color:#ffffff;
+}
+
+#new_leaf_button {
+    text-decoration: none;
+    color:#ffff00;
+}
+
+#new_leaf_button:hover {
+    color:#ffffff;
+}
+
+#new_horizons_button {
+    text-decoration: none;
+    color:#ffff00;
+}
+
+#new_horizons_button:hover {
+    color:#ffffff;
+}
+
+#options_button {
+    text-decoration: none;
+    color:#ffff00;
+}
+
+#options_button:hover {
+    color:#ffffff;
+}
+
+#back_button {
+    text-decoration: none;
+    color:#ffff00;
+}
+
+#back_button:hover {
+    color:#ffffff;
+}
+
+#menu_button {
+    text-decoration: none;
+    color:#ffff00;
+}
+
+#menu_button:hover {
+    color:#ffffff;
+}
+
