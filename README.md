@@ -8,7 +8,7 @@ as I cannot leagally provide them here.
 
 You will need to create a "music" folder in the bin. and the structure will look like this.
 
-![Main](https://imgur.com/TePbTQ0)
+https://imgur.com/TePbTQ0
 
 Folder Structure:
   bin/music/wild_world/
