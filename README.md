@@ -1,4 +1,4 @@
-# ACAMP
+# Animal Crossing Automated Music Player
 
 Electron based app that plays music depending on the hour.
 This project seeks to emulate the feature from the Animal Crossing games.
