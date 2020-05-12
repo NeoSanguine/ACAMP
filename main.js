@@ -8,6 +8,7 @@ var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
 
 const debug = false;
 const showDebugger = false;
+const canUseDebugTools = false;
 
 const mainScreenActive = true;
 
@@ -41,13 +42,20 @@ function createWindow () {
 
 
   // Open the DevTools.
-
   if(showDebugger == true)
   {
     mainWindow.webContents.openDevTools();
   }
  
+  if(canUseDebugTools == true){
+    mainWindow.webContents.on("devtools-opened", () => {
+      mainWindow.webContents.closeDevTools();
+      });
+  }
+  
+
 }
+
 
 
 
