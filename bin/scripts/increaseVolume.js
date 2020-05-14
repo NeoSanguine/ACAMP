@@ -23,6 +23,7 @@ function increaseVolume()
 
    console.log("New Volume: " + volume);
 
+   // update the volume so the user can hear 
    var menuAudio = document.getElementById("menu_music");
    if(menuAudio != null){
         menuAudio.volume = volume;
