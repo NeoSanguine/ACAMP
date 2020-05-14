@@ -13,11 +13,11 @@ function decreaseVolume()
    }
    else{
 
-    var volume = remote.getGlobal('sharedObj').global_volume = remote.getGlobal('sharedObj').global_volume - 0.1;
+    remote.getGlobal('sharedObj').global_volume = remote.getGlobal('sharedObj').global_volume - 0.1;
 
    }
 
-   
+   var volume = remote.getGlobal('sharedObj').global_volume;
    console.log("New Volume: " + volume);
 
  }
