@@ -5,8 +5,8 @@ const path = require('path')
 
 
 const debug = false;
-const showDebugger = true;
-const canUseDebugTools = true;
+const showDebugger = false;
+const canUseDebugTools = false;
 
 const mainScreenActive = true;
 

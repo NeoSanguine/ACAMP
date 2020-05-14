@@ -10,6 +10,7 @@
     }
 
 
+    // DONT STOP THE MUSIC FOR THE OPTIONS MENU
     var optionsButton = document.getElementById("options_button");
     if(optionsButton != null){
         optionsButton.onclick = function() {// error

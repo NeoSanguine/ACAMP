@@ -23,6 +23,16 @@ function increaseVolume()
 
    console.log("New Volume: " + volume);
 
+   var menuAudio = document.getElementById("menu_music");
+   if(menuAudio != null){
+        menuAudio.volume = volume;
+   }
+
+   var inGameAudio = document.getElementById("in_game_music");
+   if(inGameAudio != null){
+      inGameAudio.volume = volume;
+   }
+
  }
 
 

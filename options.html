@@ -12,6 +12,12 @@
     
     </head>
   <body>
+
+    <!-- play music in the background-->
+    <audio autoplay  id="menu_music" loop >
+      <source src="./bin/music/title/menu.mp3"></source>
+      <script src="./bin/scripts/setVolume20.js" param="menu_music"></script> <!-- lower the volume of the audio-->
+    </audio>
     
     <h1 id="title">Options</h1>  
 
@@ -74,6 +80,7 @@
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
+    <script src="./bin/scripts/stopMenuMusic.js" param="menu_music"></script> <!-- stop the menu music-->
     <script src="./bin/scripts/increaseVolume.js"></script>
     <script src="./bin/scripts/decreaseVolume.js"></script>
   </body>
