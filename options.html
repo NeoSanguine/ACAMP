@@ -13,46 +13,68 @@
     </head>
   <body>
     
-
-    <!-- play music in the background-->
-    <audio autoplay  id="menu_music">
-      <source src="./bin/music/title/menu.mp3"></source>
-      <script src="./bin/scripts/setVolume20.js" param="menu_music"></script> <!-- lower the volume of the audio-->
-    </audio>
-
-    <h1 id="title">Animal Crossing</h1>
-
-    
+    <h1 id="title">Options</h1>  
 
     <!-- Wild world button -->
-    <p id = "button">
+    <!--<p id = "button">
       <span class="tooltip" >
-        <a href="./wildWorld.html" id="wild_world_button" title="Play from the Wild World OST">
-          Wild World
+        <a href="" id="wild_world_button" title="Pump up the jam, pump it up, while your feet are stomping! ">
+          Volume Up
         </a>
       </span>
-    </p>
+    </p>-->
+
+    <p id = "button">
+        <span class="tooltip" >
+          <button id="volume_button_decrease" title="Turn down the volume.">
+            -
+          </button>
+        </span>
+
+        <span class="tooltip" >
+          <button id="volume_button" title="display_volume_on_hover">
+               Volume
+          </button>
+        </span>
+
+        <span class="tooltip" >
+          <button id="volume_button_increase" title="Pump up the jam, pump it up, while your feet are stomping! ">
+               +
+          </button>
+        </span>
+
+
+      </p>
 
     <p id = "button">
       <span class="tooltip" >
-        <a href="./newLeaf.html" id="new_leaf_button" title="Play from the New Leaf OST">
-          New Leaf
+        <a href="" id="new_leaf_button" title="Play the snow tracks">
+            Snow
         </a>
       </span>
     </p>  
 
     <p id = "button">
       <span class="tooltip" >
-        <a href="./newHorizons.html" id="new_horizons_button" title="Play from the New Horizons OST">
-          New Horizions
+        <a href="" id="new_horizons_button" title="Play the rain tracks">
+          Rain
         </a>
       </span>
     </p>
+
+    <p id = "button">
+        <span class="tooltip"  >
+          <a href="./index.html" id="new_horizons_button" title="Go back to the previous screen.">
+            Back
+          </a>
+        </span>
+      </p>
     
     
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
-    <script src="./bin/scripts/stopMenuMusic.js"></script>
+    <script src="./bin/scripts/increaseVolume.js"></script>
+    <script src="./bin/scripts/decreaseVolume.js"></script>
   </body>
 </html>

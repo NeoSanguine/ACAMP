@@ -1,16 +1,22 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+var electron = require('electron')
+const {app, BrowserWindow} = electron;
 const path = require('path')
-
-var nodeConsole = require('console');
-var myConsole = new nodeConsole.Console(process.stdout, process.stderr);
 
 
 const debug = false;
-const showDebugger = false;
-const canUseDebugTools = false;
+const showDebugger = true;
+const canUseDebugTools = true;
 
 const mainScreenActive = true;
+
+const { ipcMain } = require( "electron" );
+
+ipcMain.on( "setMyGlobalVariable", ( event, myGlobalVariableValue ) => {
+  global.myGlobalVariable = myGlobalVariableValue;
+} );
+
+global.sharedObj = {global_volume: 0.1};
 
 // main window
 let mainWindow;
@@ -24,7 +30,8 @@ function createWindow () {
     show: false,
     resizable: true,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration:true
     }
   })
 
@@ -42,19 +49,21 @@ function createWindow () {
 
 
   // Open the DevTools.
-  if(showDebugger == true)
-  {
+  if(showDebugger === true){
     mainWindow.webContents.openDevTools();
   }
  
-  if(canUseDebugTools == true){
-    mainWindow.webContents.on("devtools-opened", () => {
-      mainWindow.webContents.closeDevTools();
-      });
-  }
-  
+  mainWindow.webContents.on("devtools-opened", () => {
+      if(canUseDebugTools === false){
+        mainWindow.webContents.closeDevTools();
+      }   
+    });
+    
 
+  // global.sharedObj = {global_volume:2.0};
+  
 }
+
 
 
 

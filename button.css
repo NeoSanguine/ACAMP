@@ -23,6 +23,9 @@
 #wild_world_button {
     text-decoration: none;
     color:#ffff00;
+    background:none;
+    border:none;
+    font-size: 72px;
 }
 
 #wild_world_button:hover {
@@ -72,5 +75,63 @@
 
 #menu_button:hover {
     color:#ffffff;
+}
+
+/*Option MENU STUFF*/
+.volume_button{
+    color:#ffff00;
+    /*visibility: hidden;*/
+    position: relative;
+    display: inline;
+
+    z-index: 1;
+}
+
+#volume_button_decrease{
+    color:#ffff00;
+    position: relative;
+    display:inline;
+    background:none;
+    border:none;
+    font-size:48px;
+    font-family: "Animal Crossing";
+    text-align:center;
+    color:#ffff00;
+    z-index:1;
+}
+
+#volume_button_decrease:hover{
+    color:#ffffff;
+}
+
+#volume_button_increase{
+    color:#ffff00;
+    position: relative;
+    display:inline;
+    background:none;
+    border:none;
+    font-size:48px;
+    font-family: "Animal Crossing";
+    text-align:center;
+    color:#ffff00;
+    z-index:1;
+}
+
+#volume_button_increase:hover{
+    color:#ffffff;
+}
+
+#volume_button{
+    color:#ffff00;
+    position: relative;
+    display:inline;
+    background:none;
+    border:none;
+    font-size:48px;
+    font-family: "Animal Crossing";
+    text-align:center;
+    color:#ffff00;
+    z-index:1;
+    
 }
 

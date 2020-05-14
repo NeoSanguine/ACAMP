@@ -52,6 +52,7 @@ function getTime(){
     // not even close to the best way of getting all of the times, but it leaves room to do some stuff 
     // based on the hour in the future I guess. 
     //TODO: Look into a time based skybox or something
+    
     if(current_hour == 0){
         isAm = true;
         current_track = "12AM";

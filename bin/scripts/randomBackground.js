@@ -18,7 +18,7 @@ window.onload = function(){
         image_override = "background-image: url('./bin/background/ac_background2.png');";
     }
 
-    this.console.log(randomInt);
+    //this.console.log(randomInt);
 
     image.style = image_override;
 
