@@ -87,4 +87,4 @@ snowButton.onclick = makeItSnow;
 var rainButton = document.getElementById('rain_button');
 rainButton.onclick = makeItRain;
 
-var t = setInterval(updateColors, 100); // every second we call getColor()
+var t = setInterval(updateColors, 1000); // every second we call getColor()
