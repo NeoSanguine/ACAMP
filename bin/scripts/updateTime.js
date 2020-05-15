@@ -22,6 +22,7 @@ function getTime(){
     var gameName = "wild_world";
     var filetype = ".mp3";
     var image_override = "";
+    var canUseWeather = false;
 
     // for formating (not really necessary)
     var stringHour = "";
@@ -36,13 +37,16 @@ function getTime(){
 
     if(name == "Wild world"){
         gameName = "wild_world";
+        canUseWeather = false;
     }
     else if(name == "New Leaf"){
         gameName = "new_leaf";
         filetype = ".wav";
+        canUseWeather = true;
     }
     else if(name == "New Horizions"){
         gameName = "new_horizions"
+        canUseWeather = false;
     }
 
     //console.log(image.style);
@@ -218,16 +222,43 @@ function getTime(){
     var music = document.getElementById("in_game_music");
     // check if we are already playing the right track
 
-    var filepath = "./bin/music/in_game/" + gameName + "/" + current_track + filetype;
 
-    var fileName = current_track + filetype;
+    //check for weather changes
+    var weatherExtention = "";
+
+    if(canUseWeather){
+        var remote = require('electron').remote;
+    
+        var isRaining = remote.getGlobal('sharedObj').global_raining;
+        var isSnowing = remote.getGlobal('sharedObj').global_snowing; 
+
+        if(isRaining){
+            weatherExtention = "_rain";
+        }
+
+        if(isSnowing){
+            weatherExtention = "_snow";
+        }
+    }
+    
+
+
+    var filepath = "./bin/music/in_game/" + gameName + "/" + current_track + weatherExtention + filetype;
+
+    var fileName = current_track + weatherExtention + filetype;
     var trimmedSrc = ""; 
     
     if(current_track.length == 3){
-        trimmedSrc = music.src.substr(music.src.length - 7);
+        trimmedSrc = music.src.substr(music.src.length - (7 + weatherExtention.length) ); 
     }
     else if(current_track.length == 4){
-        trimmedSrc = music.src.substr(music.src.length - 8);
+        if(canUseWeather){
+
+        }
+        else{
+            trimmedSrc = music.src.substr(music.src.length - (8 + weatherExtention.length));
+        }
+        
     }
 
     //console.log(fileName);

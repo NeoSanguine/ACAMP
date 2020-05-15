@@ -6,7 +6,7 @@ const path = require('path')
 
 const debug = false;
 const showDebugger = false;
-const canUseDebugTools = false;
+const canUseDebugTools = true;
 
 const mainScreenActive = true;
 
@@ -16,7 +16,11 @@ ipcMain.on( "setMyGlobalVariable", ( event, myGlobalVariableValue ) => {
   global.myGlobalVariable = myGlobalVariableValue;
 } );
 
-global.sharedObj = {global_volume: 0.1};
+global.sharedObj = {
+  global_volume: 0.1,
+  global_raining:false,
+  global_snowing:false,
+};
 
 // main window
 let mainWindow;

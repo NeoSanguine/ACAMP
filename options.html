@@ -54,17 +54,21 @@
 
     <p id = "button">
       <span class="tooltip" >
-        <a href="" id="new_leaf_button" title="Play the snow tracks">
+        <button id="snow_button" title="Let there be snow!">
+          <span id="snow_button_color" style="color:#ff0000">
             Snow
-        </a>
+          </span>
+        </button>
       </span>
     </p>  
 
     <p id = "button">
       <span class="tooltip" >
-        <a href="" id="new_horizons_button" title="Play the rain tracks">
-          Rain
-        </a>
+        <button id="rain_button" title="Make it rain!">
+          <span id="rain_button_color" style="color:#ff0000">
+            Rain
+          </span>      
+        </button>
       </span>
     </p>
 
@@ -83,5 +87,6 @@
     <script src="./bin/scripts/stopMenuMusic.js" param="menu_music"></script> <!-- stop the menu music-->
     <script src="./bin/scripts/increaseVolume.js"></script>
     <script src="./bin/scripts/decreaseVolume.js"></script>
+    <script src="./bin/scripts/updateMusicType.js"></script>
   </body>
 </html>

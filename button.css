@@ -135,3 +135,38 @@
     
 }
 
+#rain_button{
+    /*color:#ffff00;*/
+    position: relative;
+    display:inline;
+    background:none;
+    border:none;
+    font-size:48px;
+    font-family: "Animal Crossing";
+    text-align:center;
+    color:#ffff00;
+    z-index:1;
+}
+
+#rain_button:hover{
+    color:#ffffff;
+}
+
+#snow_button{
+    /*color:#ffff00;*/
+    position: relative;
+    display:inline;
+    background:none;
+    border:none;
+    font-size:48px;
+    font-family: "Animal Crossing";
+    text-align:center;
+    color:#ffff00;
+    z-index:1;
+}
+
+#snow_button:hover{
+    color:#ffffff;
+}
+
+
