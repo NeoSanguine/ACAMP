@@ -165,17 +165,17 @@ function getTime(){
     else if (current_hour == 21){ //9 PM
         isAm = false;
         current_track = "9PM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night3.webp');";
     }
     else if (current_hour == 22){ //10 PM
         isAm = false;
         current_track = "10PM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night3.webp');";
     }
     else if (current_hour == 23){ //11 PM
         isAm = false;
         current_track = "11PM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night3.webp');";
     }
 
     if(isAm){
@@ -248,12 +248,14 @@ function getTime(){
     var fileName = current_track + weatherExtention + filetype;
     var trimmedSrc = ""; 
     
+    console.log(current_track.length);
+
     if(current_track.length == 3){
         trimmedSrc = music.src.substr(music.src.length - (7 + weatherExtention.length) ); 
     }
     else if(current_track.length == 4){
         if(canUseWeather){
-
+            trimmedSrc = music.src.substr(music.src.length - (8));
         }
         else{
             trimmedSrc = music.src.substr(music.src.length - (8 + weatherExtention.length));
