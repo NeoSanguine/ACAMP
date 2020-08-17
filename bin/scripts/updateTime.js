@@ -38,18 +38,18 @@ function getTime(){
 
     //console.log(name);
 
-    if(name == "Wild world"){
+    if(name === "Wild World"){
         gameName = "wild_world";
-        canUseWeather = false;
+        canUseWeather = true;
     }
-    else if(name == "New Leaf"){
+    else if(name === "New Leaf"){
         gameName = "new_leaf";
         filetype = ".wav";
         canUseWeather = true;
     }
-    else if(name == "New Horizions"){
+    else if(name === "New Horizions"){
         gameName = "new_horizions"
-        canUseWeather = false;
+        canUseWeather = true;
     }
     
     // assign weather Extension
@@ -262,6 +262,11 @@ function getTime(){
 
         if(isSnowing){
             weatherExtention = "_snow";
+        }
+
+        //TODO: remove when you add the wild world tracks
+        if(name == "Wild world"){
+            weatherExtention = "";
         }
     }
     

@@ -10,7 +10,7 @@ const path = require('path')
 
 
 const debug = false;
-const showDebugger = true;
+const showDebugger = false;
 const canUseDebugTools = true;
 
 const numberOfVars = 4;
