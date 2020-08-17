@@ -201,6 +201,11 @@ function GetDataFromWeatherAPI()
   var city = sharedObj.global_city;
   var apiKey = sharedObj.global_weatherKey;
 
+  if(apiKey === "your-token-here"){
+    console.log("Warning: token not assigned, can't access OpenWeather API");
+    return;
+  }
+
   var weatherData = "";
 
   console.log("Raw City: " + city);
