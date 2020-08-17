@@ -1,12 +1,18 @@
 // Modules to control application life and create native browser window
 var electron = require('electron')
+
+var fs = require('fs');
+
+
 const {app, BrowserWindow} = electron;
 const path = require('path')
 
 
 const debug = false;
-const showDebugger = false;
+const showDebugger = true;
 const canUseDebugTools = true;
+
+const numberOfVars = 4;
 
 const mainScreenActive = true;
 
@@ -20,6 +26,9 @@ global.sharedObj = {
   global_volume: 0.1,
   global_raining:false,
   global_snowing:false,
+  global_dynamicWeather:true,
+  global_state:"TEXAS",
+  global_city:"DALLAS",
 };
 
 // main window
@@ -50,7 +59,7 @@ function createWindow () {
   //create the icon
   mainWindow.setIcon("./bin/icon/icon.png");
   
-
+// global.sharedObj = {global_volume:2.0};
 
   // Open the DevTools.
   if(showDebugger === true){
@@ -63,14 +72,9 @@ function createWindow () {
       }   
     });
     
-
-  // global.sharedObj = {global_volume:2.0};
+  LoadSettings();
   
 }
-
-
-
-
 
 
 // This method will be called when Electron has finished
@@ -82,6 +86,10 @@ app.whenReady().then(createWindow)
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
+
+  // save our data to our settings file
+  SaveSettings();
+
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') app.quit()
@@ -98,3 +106,80 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+
+function LoadSettings()
+{
+  
+  var settings = "";
+
+  
+
+  settings = fs.readFileSync("./bin/settings/settings.ini", 'utf8');
+
+  console.log("Loaded Settings: ");
+  console.log(settings);
+
+  var arraySettings = settings.split("\n");
+
+  sharedObj.global_volume = arraySettings[0];
+  sharedObj.global_raining = arraySettings[1];
+  sharedObj.global_snowing = arraySettings[2];
+  sharedObj.global_dynamicWeather = arraySettings[3];
+  sharedObj.global_state = arraySettings[4];
+  sharedObj.global_city = arraySettings[5];
+
+  //console.log("Loaded Settings: ");
+
+  var currentSettings = "";
+
+  currentSettings += JSON.parse(sharedObj.global_volume) + "\n";
+  currentSettings += JSON.parse(sharedObj.global_raining) + "\n";
+  currentSettings += JSON.parse(sharedObj.global_snowing) + "\n";
+  currentSettings += JSON.parse(sharedObj.global_dynamicWeather) + "\n";
+  currentSettings += JSON.stringify(sharedObj.global_state) + "\n";
+  currentSettings += JSON.stringify(sharedObj.global_city) + "\n";
+
+  console.log( "Currrent Settings: \n" + currentSettings);
+
+}
+
+function  SaveSettings()
+{
+  /*
+    global_volume: 0.1,
+    global_raining:false,
+    global_snowing:false,
+    global_dynamicWeather:true,
+    global_state:"TEXAS",
+    global_city:"DALLAS",
+  */
+ var settings = "";
+
+ // save each setting
+ settings += JSON.parse(sharedObj.global_volume) + "\n";
+ settings += JSON.parse(sharedObj.global_raining) + "\n";
+ settings += JSON.parse(sharedObj.global_snowing) + "\n";
+ settings += JSON.parse(sharedObj.global_dynamicWeather) + "\n";
+ settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_state)) + "\n";
+ settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_city)) + "\n";
+
+
+ console.log("Saving Settings: \n " + settings);
+
+ fs.writeFile("./bin/settings/settings.ini", settings, function (err){
+   if(err)
+     return console.log(err);
+ });
+}
+
+function RemoveQuotesFromString(originalString){
+
+  var newString = "";
+
+  newString = (String)(originalString).substring(1,originalString.length-1);
+
+  //newString = (String)(newString).substring(newString.length,newString.length-1);
+
+  return newString;
+}
