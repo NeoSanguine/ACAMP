@@ -165,23 +165,30 @@ function  SaveSettings()
     global_state:"TEXAS",
     global_city:"DALLAS",
   */
- var settings = "";
+  var settings = "";
 
- // save each setting
- settings += JSON.parse(sharedObj.global_volume) + "\n";
- settings += JSON.parse(sharedObj.global_raining) + "\n";
- settings += JSON.parse(sharedObj.global_snowing) + "\n";
- settings += JSON.parse(sharedObj.global_dynamicWeather) + "\n";
- settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_state)) + "\n";
- settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_city)) + "\n";
- settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_weatherKey));
+  // save each setting
+  settings += JSON.parse(sharedObj.global_volume) + "\n";
+  settings += JSON.parse(sharedObj.global_raining) + "\n";
+  settings += JSON.parse(sharedObj.global_snowing) + "\n";
+  settings += JSON.parse(sharedObj.global_dynamicWeather) + "\n";
+  settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_state)) + "\n";
+  settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_city)) + "\n";
 
- console.log("Saving Settings: \n " + settings);
+  if(sharedObj.global_weatherKey === ""){
+    settings += "your-token-here";
+  }
+  else{
+    settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_weatherKey));
+  }
 
- fs.writeFile("./bin/settings/settings.ini", settings, function (err){
-   if(err)
-     return console.log(err);
- });
+
+  console.log("Saving Settings: \n " + settings);
+
+  fs.writeFile("./bin/settings/settings.ini", settings, function (err){
+    if(err)
+      return console.log(err);
+  });
 }
 
 function RemoveQuotesFromString(originalString){
@@ -201,7 +208,7 @@ function GetDataFromWeatherAPI()
   var city = sharedObj.global_city;
   var apiKey = sharedObj.global_weatherKey;
 
-  if(apiKey === "your-token-here"){
+  if(apiKey === "your-token-here" || apiKey === ""){
     console.log("Warning: token not assigned, can't access OpenWeather API");
     return;
   }
