@@ -1,5 +1,6 @@
 // Modules to control application life and create native browser window
 var electron = require('electron')
+const https = require('https');
 
 var fs = require('fs');
 
@@ -72,7 +73,10 @@ function createWindow () {
       }   
     });
     
+  // Load settings from our .ini file
   LoadSettings();
+
+  GetDataFromWeatherAPI();
   
 }
 
@@ -112,8 +116,6 @@ function LoadSettings()
 {
   
   var settings = "";
-
-  
 
   settings = fs.readFileSync("./bin/settings/settings.ini", 'utf8');
 
@@ -182,4 +184,37 @@ function RemoveQuotesFromString(originalString){
   //newString = (String)(newString).substring(newString.length,newString.length-1);
 
   return newString;
+}
+
+function GetDataFromWeatherAPI()
+{
+
+  https.get("https://api.openweathermap.org/data/2.5/weather?q={" + sharedObj.global_city + "}&appid={c0b3e0b2c8eb15d8e0e120627ad21c91}", (resp) => {
+
+  let data = "";
+
+  // chunk received
+  resp.on('data',(chunk)=>{
+    data += chunk;
+  });
+
+  //response has ended
+  resp.on('end', () => {
+    console.log(JSON.parse(data));
+  });
+
+
+
+  }).on("error",(err) => {
+    console.log("Error: " + err);
+  });
+
+
+  //change set the weather tracks based on the data we got from the weather api
+
+  if(sharedObj.global_dynamicWeather == true){
+    console.log("Setting Weather Tracks With API");
+  }
+
+
 }
