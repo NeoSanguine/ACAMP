@@ -22,6 +22,7 @@ function getTime(){
     var gameName = "wild_world";
     var filetype = ".mp3";
     var image_override = "";
+    var image_weather_extension = "";
     var canUseWeather = false;
 
     // for formating (not really necessary)

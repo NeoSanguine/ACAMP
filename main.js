@@ -30,6 +30,8 @@ global.sharedObj = {
   global_dynamicWeather:true,
   global_state:"TEXAS",
   global_city:"DALLAS",
+  global_weatherKey:"c0b3e0b2c8eb15d8e0e120627ad21c91",
+  global_currentWeather:"",
 };
 
 // main window
@@ -76,7 +78,12 @@ function createWindow () {
   // Load settings from our .ini file
   LoadSettings();
 
-  GetDataFromWeatherAPI();
+
+  // if dynamic weather is set, then pull the data from the weather api
+  if(global.sharedObj.global_dynamicWeather){
+    GetDataFromWeatherAPI();
+  }
+  
   
 }
 
@@ -130,6 +137,7 @@ function LoadSettings()
   sharedObj.global_dynamicWeather = JSON.parse(arraySettings[3]);
   sharedObj.global_state = arraySettings[4];
   sharedObj.global_city = arraySettings[5];
+  sharedObj.global_weatherKey = arraySettings[6];
 
   //console.log("Loaded Settings: ");
 
@@ -141,6 +149,7 @@ function LoadSettings()
   currentSettings += JSON.parse(sharedObj.global_dynamicWeather) + "\n";
   currentSettings += JSON.stringify(sharedObj.global_state) + "\n";
   currentSettings += JSON.stringify(sharedObj.global_city) + "\n";
+  currentSettings += JSON.stringify(sharedObj.global_weatherKey) + "\n";
 
   console.log( "Currrent Settings: \n" + currentSettings);
 
@@ -165,7 +174,7 @@ function  SaveSettings()
  settings += JSON.parse(sharedObj.global_dynamicWeather) + "\n";
  settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_state)) + "\n";
  settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_city)) + "\n";
-
+ settings += RemoveQuotesFromString(JSON.stringify(sharedObj.global_weatherKey));
 
  console.log("Saving Settings: \n " + settings);
 
@@ -189,7 +198,16 @@ function RemoveQuotesFromString(originalString){
 function GetDataFromWeatherAPI()
 {
 
-  https.get("https://api.openweathermap.org/data/2.5/weather?q={" + sharedObj.global_city + "}&appid={c0b3e0b2c8eb15d8e0e120627ad21c91}", (resp) => {
+  var city = sharedObj.global_city;
+  var apiKey = sharedObj.global_weatherKey;
+
+  var weatherData = "";
+
+  console.log("Raw City: " + city);
+  console.log("Raw API Key: " + apiKey);
+
+
+  https.get("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey + "", (resp) => {
 
   let data = "";
 
@@ -201,6 +219,56 @@ function GetDataFromWeatherAPI()
   //response has ended
   resp.on('end', () => {
     console.log(JSON.parse(data));
+
+
+    // if dynamic weather is enabled, then call the api
+    if(sharedObj.global_dynamicWeather == true){
+
+      console.log("Setting Weather Tracks With API");
+  
+  
+      //var forecast = weatherData.weather.main;
+
+      let parsedData = JSON.parse(data);
+
+      if(parsedData.cod == "404"){
+        console.log("ERROR: " + parsedData.cod + " (" + parsedData.message + ")");
+        return;
+      }
+
+      if(parsedData.weather !== ""){
+
+        let weatherData = parsedData.weather['0'];
+
+        if(weatherData !== ""){
+          
+          let currentForecast = ['main'];
+          
+          if(currentForecast !== ""){
+
+            if(currentForecast == "Rain" || currentForecast == "Thunderstorm"){
+              sharedObj.global_raining = true;
+              sharedObj.global_snowing = false;
+            }
+            else if(currentForecast == "Snow"){
+              sharedObj.global_raining = false;
+              sharedObj.global_snowing = true;
+            }
+
+            // store our current weather so we can use it in other functions
+            sharedObj.global_currentWeather = currentForecast;
+          }
+      
+          
+        }
+        
+
+      }
+      
+  
+    }
+
+    
   });
 
 
@@ -210,11 +278,6 @@ function GetDataFromWeatherAPI()
   });
 
 
-  //change set the weather tracks based on the data we got from the weather api
-
-  if(sharedObj.global_dynamicWeather == true){
-    console.log("Setting Weather Tracks With API");
-  }
 
 
 }

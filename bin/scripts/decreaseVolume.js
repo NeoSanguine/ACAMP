@@ -2,7 +2,7 @@ function decreaseVolume()
  {
    var remote = require( "electron" ).remote;
 
-   // just lowers the volume to 20% of max
+   // just lowers the volume to 10% of max
 
     var currentVolume = remote.getGlobal('sharedObj').global_volume;
 
