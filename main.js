@@ -242,7 +242,7 @@ function GetDataFromWeatherAPI()
 
         if(weatherData !== ""){
           
-          let currentForecast = ['main'];
+          let currentForecast = weatherData['main'];
           
           if(currentForecast !== ""){
 
@@ -253,6 +253,10 @@ function GetDataFromWeatherAPI()
             else if(currentForecast == "Snow"){
               sharedObj.global_raining = false;
               sharedObj.global_snowing = true;
+            }
+            else{
+              sharedObj.global_raining = false;
+              sharedObj.global_snowing = false;
             }
 
             // store our current weather so we can use it in other functions

@@ -9,6 +9,8 @@ var alreadyPlaying = false;
 
 
 function getTime(){
+
+    var remote = require('electron').remote;
     
     var date = new Date();
     var n = date.getTime();
@@ -49,6 +51,27 @@ function getTime(){
         gameName = "new_horizions"
         canUseWeather = false;
     }
+    
+    // assign weather Extension
+    if(canUseWeather){
+        var weather = remote.getGlobal('sharedObj').global_currentWeather;
+
+        if(weather == "Rain"){
+            image_weather_extension = "_rain";
+        }
+        else if(weather == "Snow"){
+            image_weather_extension = "rain";
+        }
+        else if(weather == "Thunderstorm"){
+            image_weather_extension = "_rain";
+        }
+        else if(weather == "Clouds"){
+            image_weather_extension = "_clouds";
+        }
+
+        //console.log("Current Weather: " + weather );
+    }
+
 
     //console.log(image.style);
 
@@ -61,122 +84,122 @@ function getTime(){
     if(current_hour == 0){
         isAm = true;
         current_track = "12AM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 1){  //1 AM
         isAm = true;
         current_track = "1AM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 2){ //2 AM
         isAm = true;
         current_track = "2AM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 3){  //3 AM
         isAm = true;
         current_track = "3AM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 4){  //4 AM
         isAm = true;
         current_track = "4AM"
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 5){  //5 AM
         isAm = true;
         current_track = "5AM";
-        image_override = "background-image: url('./bin/background/night3.gif');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 6){  //6 AM
         isAm = true;
         current_track = "6AM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 7){  //7 AM
         isAm = true;
         current_track = "7AM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 8){  //8 AM
         isAm = true;
         current_track = "8AM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 9){  //9 AM
         isAm = true;
         current_track = "9AM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 10){  //10 AM
         isAm = true;
         current_track = "10AM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 11){ //11 AM
         isAm = true;
         current_track = "11AM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 12){  //12 PM
         isAm = false;
         current_track = "12PM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 13){ //1 PM
         isAm = false;
         current_track = "1PM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 14){ //2 PM
         isAm = false;
         current_track = "2PM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 15){ //3 PM
         isAm = false;
         current_track = "3PM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 16){ //4 PM
         isAm = false;
         current_track = "4PM";
-        image_override = "background-image: url('./bin/background/day.png');";
+        image_override = "background-image: url('./bin/background/day" + image_weather_extension + ".png');";
     }
     else if (current_hour == 17){ //5 PM
         isAm = false;
         current_track = "5PM";
-        image_override = "background-image: url('./bin/background/sunset2.gif');";
+        image_override = "background-image: url('./bin/background/evening" + image_weather_extension +".png');";
     }
     else if (current_hour == 18){ //6 PM
         isAm = false;
         current_track = "6PM";
-        image_override = "background-image: url('./bin/background/sunset2.gif');";
+        image_override = "background-image: url('./bin/background/evening" + image_weather_extension +".png');";;
     }
     else if (current_hour == 19){ //7 PM
         isAm = false;
         current_track = "7PM";
-        image_override = "background-image: url('./bin/background/sunset2.gif');";
+        image_override = "background-image: url('./bin/background/evening" + image_weather_extension +".png');";;
     }
     else if (current_hour == 20){ //8 PM
         isAm = false;
         current_track = "8PM";
-        image_override = "background-image: url('./bin/background/night3.webp');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 21){ //9 PM
         isAm = false;
         current_track = "9PM";
-        image_override = "background-image: url('./bin/background/night3.webp');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 22){ //10 PM
         isAm = false;
         current_track = "10PM";
-        image_override = "background-image: url('./bin/background/night3.webp');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
     else if (current_hour == 23){ //11 PM
         isAm = false;
         current_track = "11PM";
-        image_override = "background-image: url('./bin/background/night3.webp');";
+        image_override = "background-image: url('./bin/background/night " + image_weather_extension + ".png');";
     }
 
     if(isAm){
@@ -228,7 +251,7 @@ function getTime(){
     var weatherExtention = "";
 
     if(canUseWeather){
-        var remote = require('electron').remote;
+        
     
         var isRaining = remote.getGlobal('sharedObj').global_raining;
         var isSnowing = remote.getGlobal('sharedObj').global_snowing; 
