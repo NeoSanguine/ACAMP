@@ -122,10 +122,10 @@ function LoadSettings()
 
   var arraySettings = settings.split("\n");
 
-  sharedObj.global_volume = arraySettings[0];
-  sharedObj.global_raining = arraySettings[1];
-  sharedObj.global_snowing = arraySettings[2];
-  sharedObj.global_dynamicWeather = arraySettings[3];
+  sharedObj.global_volume = JSON.parse(arraySettings[0]);
+  sharedObj.global_raining = JSON.parse(arraySettings[1]);
+  sharedObj.global_snowing = JSON.parse(arraySettings[2]);
+  sharedObj.global_dynamicWeather = JSON.parse(arraySettings[3]);
   sharedObj.global_state = arraySettings[4];
   sharedObj.global_city = arraySettings[5];
 
